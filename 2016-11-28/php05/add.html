@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>新闻添加页面</title>
+		<script src="jquery-3.1.1.min.js"></script>
+	</head>
+	<body>
+		<h2>添加新闻</h2>
+		新闻标题：<input type="text" 
+			id="title"/><br>
+		<p></p>
+		新闻内容：<textarea id="content"></textarea><br>
+		<p></p>
+		<button onclick="add()">确认添加</button>
+		
+	</body>
+	<script>
+	   //利用ajax来向后台提交数据
+		function add(){
+			//获取到数据
+			var title = document.getElementById("title").value;
+			var content = $("#content").val();
+//		console.log(content);
+		$.ajax({
+			type:"post",
+			url:"add.php",
+			async:true,
+			dataType:"json",
+			data:{
+				title:title,
+				content:content
+			},
+			success:function(data){
+				//接收后台返还的信息
+				if(data.status==1){
+					alert("添加成功");
+				}else{
+					alert("添加失败");
+				}
+			}
+		});
+	
+			
+			
+			
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+	</script>
+	
+	
+</html>

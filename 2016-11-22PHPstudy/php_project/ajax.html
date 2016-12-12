@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    名字：<input type="text" id="username">
+    图片：<input type="file" id="img">
+    <button onclick="sub()">提交</button>
+</body>
+<script src="jQuery.min.js"></script>
+<script>
+    function sub() {
+        var username = $("#username").val();
+        var img = $("#img")[0]['files'][0];
+        console.log(img);
+        var form = new FormData();
+        form.append("username",username);
+        form.append("img",img);
+        $.ajax({
+            type:"get",//传输方式
+            url:"ajax.php",    //请求的路径
+            async:true, //是否异步
+            data:form,
+            processData:false,
+            contentType:false,
+            success:function (data) {
+                console.log(data);
+            }
+        })
+
+
+
+
+
+    }
+
+
+
+</script>
+</html>

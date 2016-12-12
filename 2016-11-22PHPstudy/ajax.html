@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button onclick="sub()">获取</button>
+    <!--<div>-->
+        <!--<form action="" method="get"></form>-->
+    <!--</div>-->
+</body>
+<script>
+    //利用ajax获取后台的数据
+    function sub() {
+//        兼容判断
+        if(window.ActiveXObject){
+//            支持IE
+            var ajax = new ActiveXObject();
+        }else{
+//            支持谷歌
+            var ajax = new XMLHttpRequest();
+        }
+                            //异步请求，false同步
+        ajax.open("get","json.php",true);
+        //post请求要加
+//        ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        ajax.send();
+
+        ajax.onreadystatechange = function () {
+            if(ajax.readyState==4){
+                if(ajax.status==200){
+                    console.log(ajax.responseText);
+                }
+            }
+        }
+    }
+
+
+</script>
+</html>
